@@ -1,0 +1,21 @@
+{
+  "name": "dg-webgl",
+  "version": "1.0.0",
+  "description": "Direct Graphics -compatible webgl bindings.",
+  "main": "build/Release/webgl.node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cheery/node-dg-webgl"
+  },
+  "keywords": [
+    "graphics",
+    "webgl"
+  ],
+  "author": "Henri Tuhola",
+  "license": "BSD",
+  "gypfile": true
+}
