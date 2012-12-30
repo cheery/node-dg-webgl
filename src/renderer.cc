@@ -1612,14 +1612,18 @@ namespace webgl {
         Renderer* obj = ObjectWrap::Unwrap<Renderer>(args.This());
         obj->MakeCurrentLazy();
 
-        String::AsciiValue ascii(args[1]->ToString());
-        const GLint len = ascii.length();
-        const GLchar* src = *ascii;
-        if (len == DG_SURFACE_ID_LENGTH) {
-        //    Local<Object> buffer_obj = args[1]->ToObject();
-        //    void *buffer_data = node::Buffer::Data(buffer_obj);
-        //    size_t buffer_length = node::Buffer::Length(buffer_obj);
-        //    assert(buffer_length == sizeof(int) * 5);
+        Local<Object> buffer_obj = args[1]->ToObject();
+        const char *src = node::Buffer::Data(buffer_obj);
+        size_t len = node::Buffer::Length(buffer_obj);
+
+        if (len != DG_SURFACE_ID_LENGTH) {
+            ThrowException(String::New("bad dg source string"));
+        } else {
+            //    for (int i = 0; i < DG_SURFACE_ID_LENGTH; i++) {
+            //        printf("%02x ", src[i]);
+            //    }
+            //    printf("\n");
+            //    assert(buffer_length == sizeof(int) * 5);
             glTextureSourceDG(
                 args[0]->IntegerValue(), /* target */
                 src
